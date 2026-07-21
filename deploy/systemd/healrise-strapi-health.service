@@ -1,0 +1,10 @@
+# Healthcheck-Oneshot: prüft Strapi /_health, restartet den Dienst bei Fehlschlag.
+# Läuft alle 5 min via healrise-strapi-health.timer (L-01, Basis-Selbstheilung).
+[Unit]
+Description=HEALRISE Strapi Healthcheck (restart bei Fail)
+# Nicht prüfen, solange der Dienst ohnehin nicht laufen soll:
+Requisite=healrise-strapi.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/healrise/scripts/healthcheck.sh

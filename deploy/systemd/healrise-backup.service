@@ -1,0 +1,10 @@
+[Unit]
+Description=HEALRISE daily DB backup, restore drill, and offsite sync
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/healrise-backup-offsite-restore.sh
+Nice=10
+IOSchedulingClass=best-effort

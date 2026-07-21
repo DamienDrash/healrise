@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "progress_entries",
+  "info": {
+    "singularName": "progress-entry",
+    "pluralName": "progress-entries",
+    "displayName": "Progress Entry",
+    "description": "Erledigt-Status je User und Programm (Art.-9-relevant: nur eigener Zugriff, Löschung bei Consent-Widerruf)"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "program_slug": {
+      "type": "string",
+      "required": true
+    },
+    "completed_at": {
+      "type": "datetime",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

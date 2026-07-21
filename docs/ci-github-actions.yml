@@ -1,0 +1,82 @@
+# Vorlage für GitHub Actions (Plan T8.4.2) — nach .github/workflows/ci.yml kopieren,
+# sobald das Repo ein Remote hat. Backend-API- und E2E-Tests brauchen laufendes
+# Strapi + Postgres (Services-Block unten).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci
+        working-directory: app
+      - run: npm run lint
+        working-directory: app
+      - run: npm test
+        working-directory: app
+      - run: npm run build
+        working-directory: app
+
+  backend-api:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: healrise
+          POSTGRES_PASSWORD: ci-test
+          POSTGRES_DB: healrise_ci
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: strapi/package-lock.json
+      - run: npm ci
+        working-directory: strapi
+      - name: Strapi Unit-Tests (server-frei — Stripe-Webhook/Refund/§312f-Mail/Account-Deletion)
+        # Gestubbt, kein Live-Server/Stripe/SMTP nötig; schnelles Regressionsnetz
+        # für den Webhook- und P3.5-Bestätigungsmail-Goldstandard. Läuft VOR dem
+        # Start des Servers, damit Fehler früh und Stripe-unabhängig auffallen.
+        run: npm run test:strapi
+      - name: Strapi starten (Test-Env)
+        working-directory: strapi
+        env:
+          HOST: 127.0.0.1
+          PORT: 9130
+          APP_KEYS: ci-key-1,ci-key-2
+          API_TOKEN_SALT: ci-salt
+          ADMIN_JWT_SECRET: ci-admin-secret
+          TRANSFER_TOKEN_SALT: ci-transfer
+          JWT_SECRET: ci-jwt-secret
+          ENCRYPTION_KEY: ci-encryption-key-32-chars-long!!
+          DATABASE_CLIENT: postgres
+          DATABASE_HOST: 127.0.0.1
+          DATABASE_PORT: 5432
+          DATABASE_NAME: healrise_ci
+          DATABASE_USERNAME: healrise
+          DATABASE_PASSWORD: ci-test
+          SEED_DEMO: 'true'
+          STRIPE_WEBHOOK_SECRET: whsec_ci_test_secret
+        run: |
+          npm run build
+          nohup npm start &
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:9130/api/programs -o /dev/null && break || sleep 2; done || true
+      - name: API-Tests
+        env:
+          STRIPE_WEBHOOK_SECRET: whsec_ci_test_secret
+        run: node strapi/tests/api-tests.mjs

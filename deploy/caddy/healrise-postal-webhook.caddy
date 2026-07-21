@@ -1,0 +1,33 @@
+# HEALRISE Caddy — Postal Webhook & Tracking (P3.1) — VERSIONIERTES DEPLOY-ARTEFAKT.
+#
+# Routet den Postal-Webhook (Zustell-/Bounce-Events) auf den Strapi-Empfänger
+# POST /healrise/app/api/mail/webhook → 127.0.0.1:9130. Authentizität kommt aus
+# der Postal-RSA-Signatur (X-Postal-Signature), NICHT aus Caddy — daher hier kein
+# Auth-Layer, nur das Proxying. Der Strapi-Controller lehnt ohne gültige Signatur
+# ab (strapi/src/api/mail-webhook, verifyPostalSignature).
+#
+# Nachbar-Schutz: PFAD-SCOPED auf /healrise/app/api/mail/webhook in der GETEILTEN
+# Site services.frigew.ski — Nachbarprojekte (fitness, athletik-movement, hermes,
+# pubtender, …) sind NICHT betroffen. KEINE globalen Site-Direktiven.
+#
+# ⛔ Deploy-Gate (Damien-Go): NICHT automatisch anwenden.
+#   1. Backup:    sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak.postal
+#   2. Den handle-Block unten in den services.frigew.ski { … }-Block einfügen —
+#      VOR dem generischen /healrise/app/*-SPA-Handle (spezifischer Pfad zuerst).
+#   3. Validieren:  caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+#   4. ERST nach Freigabe:  sudo systemctl reload caddy
+#   5. In Postal den Webhook-Endpoint eintragen:
+#        https://services.frigew.ski/healrise/app/api/mail/webhook
+#      und den öffentlichen Postal-Schlüssel als POSTAL_WEBHOOK_PUBLIC_KEY in
+#      strapi/.env setzen.
+#
+# Tracking (Open/Click): Postals Tracking läuft auf Postals EIGENER Tracking-
+# Domain (separater DNS-/Postal-Schritt, NICHT über diese App-Route). Hier bewusst
+# nur der Webhook-Empfang — Tracking-Pixel/Redirects gehören nicht auf den
+# App-Pfad. Siehe docs/postal_setup.md.
+
+# --- VOR `handle /healrise/app/*` in den services.frigew.ski-Block einfügen ---
+handle /healrise/app/api/mail/webhook {
+	uri strip_prefix /healrise/app
+	reverse_proxy 127.0.0.1:9130
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="HEALRISE">
+  <defs>
+    <linearGradient id="hr-cu" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#D89A78"/>
+      <stop offset="0.55" stop-color="#B8734F"/>
+      <stop offset="1" stop-color="#9C5E3D"/>
+    </linearGradient>
+    <linearGradient id="hr-petal" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#FDFCFA"/>
+      <stop offset="1" stop-color="#EFE9DE"/>
+    </linearGradient>
+  </defs>
+  <!-- Untergrund: warmes Ivory, weich gerundet -->
+  <rect x="4" y="4" width="112" height="112" rx="26" fill="#F6F3EF"/>
+  <rect x="4.75" y="4.75" width="110.5" height="110.5" rx="25.25" fill="none" stroke="#E7E1D7" stroke-width="1.5"/>
+
+  <!-- Copper-Ring (hinter der Blüte) -->
+  <circle cx="60" cy="37" r="16.5" fill="none" stroke="url(#hr-cu)" stroke-width="7"/>
+
+  <!-- Sage-Blätter (hinten), rechts + gespiegelt links -->
+  <g>
+    <path d="M59 83 Q83.6 67.2 86 38 Q65.6 56.4 59 83 Z" fill="#97A995"/>
+    <path d="M61 83 Q36.4 67.2 34 38 Q54.4 56.4 61 83 Z" fill="#97A995"/>
+    <path d="M59 84 Q72.8 60.3 71 33 Q59.2 57.1 59 84 Z" fill="#A7B7A6"/>
+    <path d="M61 84 Q47.2 60.3 49 33 Q60.8 57.1 61 84 Z" fill="#A7B7A6"/>
+  </g>
+
+  <!-- Ivory-Petalen (vorne) -->
+  <g stroke="#E4DDD0" stroke-width="0.8" stroke-linejoin="round">
+    <path d="M60 85 Q72.2 56 66.5 25 Q55.8 54.2 60 85 Z" fill="url(#hr-petal)"/>
+    <path d="M60 85 Q47.8 56 53.5 25 Q64.2 54.2 60 85 Z" fill="url(#hr-petal)"/>
+  </g>
+  <path d="M60 84 Q61.6 55 66 26" fill="none" stroke="#E9E2D6" stroke-width="0.7"/>
+  <path d="M60 84 Q58.4 55 54 26" fill="none" stroke="#E9E2D6" stroke-width="0.7"/>
+
+  <!-- Ivory-Schale mit Samen-Punkten -->
+  <path d="M41 82 Q60 90 79 82 L77 88 Q60 99 43 88 Z" fill="#F1EBE0" stroke="#E0D8C9" stroke-width="0.8"/>
+  <path d="M44 83.5 Q60 90.5 76 83.5" fill="none" stroke="#FBF7F0" stroke-width="0.9"/>
+  <g fill="#B7AE9F">
+    <circle cx="55" cy="88" r="1.05"/><circle cx="60" cy="87.2" r="1.05"/><circle cx="65" cy="88" r="1.05"/>
+    <circle cx="57.5" cy="91" r="1.05"/><circle cx="62.5" cy="91" r="1.05"/>
+  </g>
+</svg>

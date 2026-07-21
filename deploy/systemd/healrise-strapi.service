@@ -1,0 +1,25 @@
+# HEALRISE Strapi (Produktion) — Installation siehe docs/deployment.md
+# sudo cp deploy/systemd/healrise-strapi.service /etc/systemd/system/
+# sudo systemctl daemon-reload && sudo systemctl enable --now healrise-strapi
+[Unit]
+Description=HEALRISE Strapi CMS (127.0.0.1:9130)
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=claude
+Group=claude
+WorkingDirectory=/opt/healrise/strapi
+# Strapi lädt strapi/.env selbst (HOST/PORT/DB/Secrets); hier nur NODE_ENV.
+# SEED_DEMO darf hier NIE gesetzt werden (legt Testuser mit bekanntem Passwort an).
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node /opt/healrise/strapi/node_modules/.bin/strapi start
+Restart=always
+RestartSec=5
+SyslogIdentifier=healrise-strapi
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

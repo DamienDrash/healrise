@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Builds / Artefakte
+app/dist/
+strapi/dist/
+strapi/.strapi/
+strapi/.tmp/
+strapi/build/
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+
+# Agent-/Tooling-Artefakte
+.claude/settings.local.json
+.agents/
+
+# Logs & OS
+*.log
+.DS_Store
+
+# Test-Artefakte
+coverage/
+playwright-report/
+test-results/
+
+# DB-Backups (pg_dump, nie committen)
+.backups/

@@ -1,0 +1,54 @@
+# HEALRISE Security-Header (P4.1 / Audit L-02, M-03) — DEPLOY-ARTEFAKT, NICHT AUTO-AKTIV.
+#
+# Diese Header gehören PFAD-SCOPED in die HEALRISE-`handle`-Blöcke der GETEILTEN
+# Site `services.frigew.ski` (/etc/caddy/Caddyfile). Bewusst pfad-scoped, damit die
+# Nachbarprojekte (fitness, athletik-movement, hermes, pubtender, …) NICHT betroffen
+# sind. `header` innerhalb von `handle /healrise/app/*` und `handle /healrise/*`
+# setzt die Header nur auf HEALRISE-Antworten.
+#
+# ⛔ Betreiber-/Deploy-Gate (Damien-Go): Dieses Snippet wird NICHT automatisch
+# angewandt. Vorgehen wie bei P-01:
+#   1. Backup:   sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak.p41
+#   2. Header-Direktiven aus diesem File in die beiden healrise-`handle`-Blöcke
+#      (App + Landing) einfügen (siehe unten).
+#   3. Validieren:  caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+#   4. ERST nach Freigabe:  sudo systemctl reload caddy
+#   5. Live prüfen:  curl -sI https://services.frigew.ski/healrise/app/ | grep -i \
+#        -E 'strict-transport|x-content-type|referrer-policy|x-frame|permissions-policy|content-security'
+#
+# Hinweis CSP: konservativ + zuerst als Report-Only ausrollen (unten aktiv), damit
+# die PWA (React inline-styles, styled-components <style>, self-hosted Fonts, Stripe-
+# Redirect) nicht bricht. Erst nach report-freiem Betrieb auf enforcing umstellen
+# (die enforcing-Zeile ist auskommentiert vorbereitet).
+#
+# Anwendungsstelle im Caddyfile (Beispiel App-Block):
+#
+#   handle /healrise/app/* {
+#       route {
+#           uri strip_prefix /healrise/app
+#           root * /opt/healrise/app/dist
+#           try_files {path} /index.html
+#           import healrise_security_headers      # <— diese Direktiven
+#           ... (bestehende Cache-Control-Matcher) ...
+#           file_server
+#       }
+#   }
+
+# --- Kern-Header (sicher, brechen die App nicht) ---
+header {
+	# HSTS: HTTPS erzwingen. includeSubDomains/preload betrifft die ganze Domain —
+	# vor preload mit den Nachbarprojekten abstimmen.
+	Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	X-Content-Type-Options "nosniff"
+	Referrer-Policy "strict-origin-when-cross-origin"
+	X-Frame-Options "SAMEORIGIN"
+	Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+	# Server-Banner entfernen
+	-Server
+}
+
+# --- CSP: zuerst Report-Only (bricht nichts, nur Reports) ---
+header Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+
+# --- CSP enforcing (erst nach report-freiem Betrieb aktivieren, Report-Only-Zeile dann entfernen) ---
+# header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"

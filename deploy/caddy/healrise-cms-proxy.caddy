@@ -1,0 +1,47 @@
+# HEALRISE Caddy — Strapi CMS/Admin + API Reverse-Proxy (B-03 / P4 Live-Vorbereitung)
+# VERSIONIERTES DEPLOY-ARTEFAKT — wird NICHT automatisch angewandt.
+#
+# Proxied die HEALRISE-Strapi-Pfade auf der GETEILTEN Site services.frigew.ski zum
+# lokalen Strapi. Zwei Routen:
+#   /healrise/app/cms/*  → Admin-Panel + content-manager + Admin-APIs
+#   /healrise/app/api/*  → öffentliche/Content-API (App: baseURL /healrise/app + /api/*)
+#
+# WICHTIG — Werte aus dem Repo, NICHT die Strapi-Defaults:
+#   - Port ist 127.0.0.1:9130 (strapi/.env PORT=9130 + systemd-Unit), NICHT 1337.
+#   - PUBLIC_URL=https://services.frigew.ski/healrise/app/cms → Strapi erzeugt seine
+#     Admin-Asset-URLs mit diesem Präfix. Die CMS-Route strippt daher exakt
+#     /healrise/app/cms, damit Strapi seine Root-Routen (/admin, /content-manager)
+#     sieht; die Asset-Requests (…/cms/admin/*.js) lösen sich dadurch sauber auf.
+#   - Die API-Route strippt nur /healrise/app (Strapi mountet die API unter /api).
+#   Belegt durch scripts/smoke.sh: /cms/admin → 200 (HTML+Asset), /api/programs → 403.
+#
+# Nachbar-Schutz: beide handle-Blöcke sind PFAD-SCOPED auf /healrise/app/… —
+# Nachbarprojekte (fitness, athletik-movement, hermes, pubtender, …) NICHT betroffen.
+# KEINE globalen Site-Direktiven. Strapi-Admin ist per Admin-Auth geschützt (kein
+# Caddy-Auth-Layer); X-Forwarded-* setzt reverse_proxy automatisch (server.proxy=true).
+#
+# REIHENFOLGE (kritisch): Diese Blöcke MÜSSEN VOR dem generischen SPA-Handle
+# `handle /healrise/app/*` aus deploy/caddy/healrise-cache-headers.caddy stehen —
+# spezifischere Pfade zuerst, sonst fängt der SPA-file_server /cms + /api ab.
+# Die Postal-Webhook-Route (deploy/caddy/healrise-postal-webhook.caddy) ist eine
+# Teilmenge der /healrise/app/api/*-Route und damit hier bereits abgedeckt.
+#
+# ⛔ Deploy-Gate (Damien-Go): NICHT automatisch anwenden.
+#   1. Backup:    sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak.cms
+#   2. Beide handle-Blöcke unten in den services.frigew.ski { … }-Block einfügen —
+#      VOR den /healrise/app/*- und /healrise/*-Handles.
+#   3. Validieren: caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+#   4. ERST nach Freigabe: sudo systemctl reload caddy
+#   5. Prüfen: scripts/smoke.sh (Admin-HTML/Asset 200, /api/programs 403).
+
+# --- Strapi Admin-Panel + content-manager (PUBLIC_URL-Präfix /healrise/app/cms) ---
+handle /healrise/app/cms/* {
+	uri strip_prefix /healrise/app/cms
+	reverse_proxy 127.0.0.1:9130
+}
+
+# --- Strapi API (App-Aufrufe unter /healrise/app/api/*) ---
+handle /healrise/app/api/* {
+	uri strip_prefix /healrise/app
+	reverse_proxy 127.0.0.1:9130
+}

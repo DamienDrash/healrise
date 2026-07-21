@@ -1,0 +1,140 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programs",
+  "info": {
+    "singularName": "program",
+    "pluralName": "programs",
+    "displayName": "Program",
+    "description": "HEALRISE recovery program content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "plan_required": {
+      "type": "enumeration",
+      "enum": [
+        "freebie",
+        "healrise7",
+        "healrise14",
+        "premium"
+      ],
+      "required": true,
+      "default": "freebie"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "ernaehrung",
+        "bewegung",
+        "selfcare",
+        "mindset",
+        "supplements",
+        "narbenpflege",
+        "allgemein"
+      ],
+      "default": "allgemein"
+    },
+    "content_type": {
+      "type": "enumeration",
+      "enum": [
+        "guide",
+        "video",
+        "tipp",
+        "uebung",
+        "rezept",
+        "pdf",
+        "audio",
+        "checklist",
+        "external_embed"
+      ],
+      "default": "guide"
+    },
+    "day": {
+      "type": "integer",
+      "min": 1,
+      "max": 42
+    },
+    "week": {
+      "type": "integer",
+      "min": 1,
+      "max": 6
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "duration_minutes": {
+      "type": "integer"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "video_url": {
+      "type": "string"
+    },
+    "media_source": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "strapi",
+        "minio",
+        "youtube",
+        "soundcloud",
+        "vimeo",
+        "bunny",
+        "mux",
+        "external"
+      ],
+      "default": "none"
+    },
+    "media_url": {
+      "type": "string"
+    },
+    "media_asset": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files",
+        "videos",
+        "audios",
+        "images"
+      ]
+    },
+    "media_embed_id": {
+      "type": "string"
+    },
+    "media_title": {
+      "type": "string"
+    },
+    "media_duration_seconds": {
+      "type": "integer"
+    },
+    "media_access_note": {
+      "type": "text"
+    }
+  }
+}

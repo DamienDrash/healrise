@@ -1,0 +1,27 @@
+{
+  "kind": "singleType",
+  "collectionName": "legal",
+  "info": {
+    "singularName": "legal",
+    "pluralName": "legals",
+    "displayName": "Rechtstexte",
+    "description": "R-01: Redaktionell pflegbare Pflicht-Rechtstexte (Impressum, Datenschutz, AGB, Widerruf). Ein Single-Type, aus dem die App die Inhalte lädt; ohne Inhalt greift der eingebaute Platzhalter-Fallback."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "impressum": {
+      "type": "richtext"
+    },
+    "datenschutz": {
+      "type": "richtext"
+    },
+    "agb": {
+      "type": "richtext"
+    },
+    "widerruf": {
+      "type": "richtext"
+    }
+  }
+}

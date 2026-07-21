@@ -1,0 +1,37 @@
+# HEALRISE Caddy Access-Log (2.4 / Audit L-01) — VERSIONIERTES DEPLOY-ARTEFAKT.
+#
+# Aktiviert ein Access-Log für die HEALRISE-Pfade auf der GETEILTEN Site
+# services.frigew.ski, mit Datei-Output + Rotation. NICHT automatisch aktiv.
+#
+# Nachbar-Schutz: Caddys `log` ist Site-scoped; um NUR /healrise* zu protokollieren,
+# werden Nicht-healrise-Requests via `log_skip` ausgenommen — die Nachbarprojekte
+# (fitness, athletik-movement, hermes, pubtender, …) landen nicht in diesem Log.
+#
+# ⛔ Deploy-Gate (Damien-Go): NICHT automatisch anwenden.
+#   1. Backup:    sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak.l01
+#   2. Log-Verzeichnis:  sudo mkdir -p /var/log/caddy && sudo chown caddy:caddy /var/log/caddy
+#   3. Den `log`-Block unten in den services.frigew.ski-Site-Block einfügen; die
+#      `log_skip`-Zeilen (bzw. das Gegenstück) an die Nicht-healrise-Handles hängen.
+#   4. Validieren:  caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+#   5. ERST nach Freigabe:  sudo systemctl reload caddy
+#   6. Prüfen:  tail -f /var/log/caddy/healrise-access.log  (nach einem /healrise-Request)
+#
+# Rotation ist eingebaut (roll_size/roll_keep/roll_keep_for) — kein externes logrotate nötig.
+
+# --- In den services.frigew.ski { … }-Block einfügen ---
+log healrise_access {
+	# Nur /healrise* protokollieren: alle anderen Pfade überspringen.
+	# (Alternativ pro Nicht-healrise-`handle` `log_skip` setzen.)
+	output file /var/log/caddy/healrise-access.log {
+		roll_size 10MiB
+		roll_keep 10
+		roll_keep_for 720h
+	}
+	format json
+	# Datenschutz: Client-IP im Log ist personenbezogen — Speicherdauer begrenzen
+	# (roll_keep_for 30 Tage) und in der Verarbeitungsdoku (Art. 30 DSGVO) führen.
+}
+
+# Nicht-healrise-Requests aus diesem Logger ausnehmen (Nachbar-Schutz):
+#   @not_healrise not path /healrise*
+#   log_skip @not_healrise

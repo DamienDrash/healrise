@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purchases",
+  "info": {
+    "singularName": "purchase",
+    "pluralName": "purchases",
+    "displayName": "Purchase",
+    "description": "Einmalkäufe (Stripe Checkout); Freischaltung erfolgt ausschließlich über den verifizierten Webhook"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "plan": {
+      "type": "enumeration",
+      "enum": ["healrise7", "healrise14", "premium"],
+      "required": true
+    },
+    "stripe_session_id": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "amount_total": {
+      "type": "integer"
+    },
+    "currency": {
+      "type": "string",
+      "default": "eur"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["completed", "refunded"],
+      "default": "completed"
+    },
+    "consent_immediate_delivery": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

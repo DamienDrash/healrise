@@ -1,0 +1,11 @@
+[Unit]
+Description=Run HEALRISE daily DB backup/restore/offsite
+
+[Timer]
+OnCalendar=*-*-* 03:10:00 Europe/Berlin
+Persistent=true
+AccuracySec=2min
+Unit=healrise-backup.service
+
+[Install]
+WantedBy=timers.target

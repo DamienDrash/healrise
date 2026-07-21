@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEALRISE — Support · Renew · Rise</title>
+    <meta name="description" content="HEALRISE begleitet dich mit Wissen, praktischen Routinen und persönlicher Wärme — für dein Wohlbefinden, aktive Gewohnheiten und mehr Selbstvertrauen im Alltag.">
+    <meta name="theme-color" content="#F6F3EF">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <!-- Fonts self-hosted (kein Google-Request, LG München I 2022 / Review I1) -->
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<!-- NAVIGATION -->
+<header class="nav" id="nav">
+    <div class="container nav-inner">
+        <a class="brand" href="#top" aria-label="HEALRISE — zur Startseite">
+            <svg class="brand-mark" viewBox="0 0 120 120" width="34" height="34" aria-hidden="true"><use href="#hr-bloom"/></svg>
+            <span class="brand-word">
+                <span class="brand-name">HEALRISE</span>
+                <span class="brand-tagline">Support · Renew · Rise</span>
+            </span>
+        </a>
+        <nav aria-label="Hauptnavigation" class="nav-links">
+            <a href="#programme">Programme</a>
+            <a href="#so-funktionierts">So funktioniert's</a>
+            <a href="#ueber-uns">Über uns</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="nav-cta">
+            <a class="btn btn-copper btn-sm" href="/healrise/app/">Kostenlos starten</a>
+            <a class="nav-login" href="/healrise/app/">Anmelden</a>
+        </div>
+    </div>
+</header>
+
+<!-- Wiederverwendbare Papercraft-Blüte (identisch zu app HealriseMark / favicon) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <linearGradient id="hr-cu" x1="0" y1="0" x2="0.4" y2="1">
+            <stop offset="0" stop-color="#D89A78"/><stop offset="0.55" stop-color="#B8734F"/><stop offset="1" stop-color="#9C5E3D"/>
+        </linearGradient>
+        <linearGradient id="hr-pt" x1="0.5" y1="0" x2="0.5" y2="1">
+            <stop offset="0" stop-color="#FDFCFA"/><stop offset="1" stop-color="#EFE9DE"/>
+        </linearGradient>
+        <g id="hr-bloom">
+            <circle cx="60" cy="37" r="16.5" fill="none" stroke="url(#hr-cu)" stroke-width="7"/>
+            <path d="M59 83 Q83.6 67.2 86 38 Q65.6 56.4 59 83 Z" fill="#97A995"/>
+            <path d="M61 83 Q36.4 67.2 34 38 Q54.4 56.4 61 83 Z" fill="#97A995"/>
+            <path d="M59 84 Q72.8 60.3 71 33 Q59.2 57.1 59 84 Z" fill="#A7B7A6"/>
+            <path d="M61 84 Q47.2 60.3 49 33 Q60.8 57.1 61 84 Z" fill="#A7B7A6"/>
+            <g stroke="#E4DDD0" stroke-width="0.8" stroke-linejoin="round">
+                <path d="M60 85 Q72.2 56 66.5 25 Q55.8 54.2 60 85 Z" fill="url(#hr-pt)"/>
+                <path d="M60 85 Q47.8 56 53.5 25 Q64.2 54.2 60 85 Z" fill="url(#hr-pt)"/>
+            </g>
+            <path d="M60 84 Q61.6 55 66 26" fill="none" stroke="#E9E2D6" stroke-width="0.7"/>
+            <path d="M60 84 Q58.4 55 54 26" fill="none" stroke="#E9E2D6" stroke-width="0.7"/>
+            <path d="M41 82 Q60 90 79 82 L77 88 Q60 99 43 88 Z" fill="#F1EBE0" stroke="#E0D8C9" stroke-width="0.8"/>
+            <path d="M44 83.5 Q60 90.5 76 83.5" fill="none" stroke="#FBF7F0" stroke-width="0.9"/>
+            <g fill="#B7AE9F">
+                <circle cx="55" cy="88" r="1.05"/><circle cx="60" cy="87.2" r="1.05"/><circle cx="65" cy="88" r="1.05"/>
+                <circle cx="57.5" cy="91" r="1.05"/><circle cx="62.5" cy="91" r="1.05"/>
+            </g>
+        </g>
+        <g id="hr-sprig" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <path d="M50 118 C44 92 52 74 47 54 S44 22 46 6"/>
+            <path d="M49 96 C40 92 34 90 30 86"/><path d="M50 92 C58 89 63 86 67 82"/>
+            <path d="M49 74 C41 71 36 69 32 65"/><path d="M50 70 C57 67 61 64 65 60"/>
+            <path d="M47 52 C40 49 36 47 33 43"/><path d="M48 48 C54 45 58 42 61 38"/>
+            <path d="M46 30 C41 27 38 25 35 21"/><path d="M46 26 C51 23 54 20 57 16"/>
+            <g fill="currentColor" stroke="none">
+                <circle cx="29" cy="85" r="2"/><circle cx="68" cy="81" r="2"/>
+                <circle cx="31" cy="64" r="2"/><circle cx="66" cy="59" r="2"/>
+                <circle cx="32" cy="42" r="2"/><circle cx="62" cy="37" r="2"/>
+                <circle cx="34" cy="20" r="1.9"/><circle cx="58" cy="15" r="1.9"/>
+                <circle cx="46" cy="6" r="2.3"/>
+            </g>
+        </g>
+        <g id="hr-spray" fill="none">
+            <path d="M96 96 A34 34 0 0 1 150 60" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+            <path d="M70 122 Q118 96 128 40 Q84 74 70 122 Z" fill="currentColor" opacity="0.16"/>
+            <path d="M74 122 Q40 92 44 44 Q80 72 74 122 Z" fill="currentColor" opacity="0.13"/>
+            <path d="M72 124 Q96 78 92 30 Q66 74 72 124 Z" fill="currentColor" opacity="0.22"/>
+        </g>
+    </defs>
+</svg>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+    <svg class="hero-bloom" viewBox="0 0 120 120" aria-hidden="true"><use href="#hr-bloom"/></svg>
+    <svg class="hero-sprig" viewBox="0 0 100 120" aria-hidden="true"><use href="#hr-sprig"/></svg>
+    <div class="container hero-inner">
+        <div class="hero-content">
+            <p class="eyebrow reveal">Vertrauenswürdige Begleitung. Echte Stärke.</p>
+            <h1 id="hero-title" class="reveal d1">Stärke beginnt mit<br><em>Wissen &amp; Unterstützung.</em></h1>
+            <p class="hero-sub reveal d2">HEALRISE begleitet dich mit vertrauenswürdigen Inhalten, praktischen Tools und einer Community, die dich versteht — für dein Wohlbefinden und deine tägliche Routine.</p>
+            <div class="hero-ctas reveal d3">
+                <a class="btn btn-copper" href="/healrise/app/">Kostenlos starten</a>
+                <a class="btn btn-outline" href="#programme">Programme entdecken</a>
+            </div>
+            <p class="hero-note reveal d3">Freebie-Programm inklusive — direkt in der App, ohne Zahlungsdaten.</p>
+        </div>
+    </div>
+</section>
+
+<!-- VERTRAUENSLEISTE -->
+<section class="trust" aria-label="Was HEALRISE auszeichnet">
+    <div class="container">
+        <ul class="trust-grid">
+            <li class="trust-item reveal">
+                <span class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="20" cy="20" r="14"/><path d="M20 6 C14 14 14 26 20 34 M20 6 C26 14 26 26 20 34 M7 16 h26 M7 24 h26"/></svg>
+                </span>
+                <h2>Ganzheitlich gedacht</h2>
+                <p>Ernährung, Bewegung, Selfcare und Mindset — Körper, Geist und Alltag zusammen gedacht.</p>
+            </li>
+            <li class="trust-item reveal d1">
+                <span class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 33 l-1.2-1.1 C13 26.6 9 22.9 9 18.4 9 14.8 11.8 12 15.4 12 c2 0 4 1 4.6 2.4 C20.6 13 22.6 12 24.6 12 28.2 12 31 14.8 31 18.4 c0 4.5-4 8.2-9.8 13.5 L20 33z"/></svg>
+                </span>
+                <h2>Persönlich entwickelt</h2>
+                <p>Von Gründerin Julia Berzal — Gesundheitsmanagerin und Sportwissenschaftlerin — empathisch und alltagstauglich.</p>
+            </li>
+            <li class="trust-item reveal d2">
+                <span class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="10" width="26" height="20" rx="3"/><path d="M7 16 h26 M13 24 h6"/></svg>
+                </span>
+                <h2>Kein Abo</h2>
+                <p>Einmal kaufen, in deinem Tempo nutzen — keine Kündigungsfristen, keine versteckten Kosten.</p>
+            </li>
+            <li class="trust-item reveal d3">
+                <span class="trust-icon" aria-hidden="true">
+                    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="4" width="16" height="32" rx="3"/><line x1="20" y1="31" x2="20" y2="31.01"/></svg>
+                </span>
+                <h2>Immer dabei</h2>
+                <p>Als App auf deinem Homescreen installierbar — deine Inhalte sind auch offline verfügbar.</p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- FUNKTIONSSCHRITTE -->
+<section class="steps" id="so-funktionierts" aria-labelledby="steps-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <p class="eyebrow">So funktioniert HEALRISE</p>
+            <h2 id="steps-title">Drei Schritte.<br><em>Dein Rhythmus.</em></h2>
+        </div>
+        <ol class="steps-grid">
+            <li class="step-card reveal">
+                <span class="step-num" aria-hidden="true">1</span>
+                <svg class="step-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 9 C16 6 10 6 6 8 v22 c4-2 10-2 14 1 4-3 10-3 14-1 V8 c-4-2-10-2-14 1z M20 9 v22"/></svg>
+                <h3>Verstehen</h3>
+                <p>Erhalte klare, alltagstaugliche Inhalte zu Ernährung, Bewegung, Selfcare und Mindset — verständlich aufbereitet.</p>
+            </li>
+            <li class="step-card reveal d1">
+                <span class="step-num" aria-hidden="true">2</span>
+                <svg class="step-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="4"/><path d="M13 20 l5 5 9-10"/></svg>
+                <h3>Anwenden</h3>
+                <p>Nutze praktische Übungen, Routinen und Checklisten für jeden Tag — und markiere, was du erledigt hast.</p>
+            </li>
+            <li class="step-card reveal d2">
+                <span class="step-num" aria-hidden="true">3</span>
+                <svg class="step-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 34 V16 M20 16 C20 10 16 6 10 6 c0 6 4 10 10 10z M20 20 c0-6 4-10 10-10 0 6-4 10-10 10z"/></svg>
+                <h3>Wachsen</h3>
+                <p>Baue aktive Gewohnheiten auf und gewinne Schritt für Schritt mehr Energie und Selbstvertrauen.</p>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<!-- PROGRAMME -->
+<section class="programs" id="programme" aria-labelledby="programs-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <p class="eyebrow">Deine Programme</p>
+            <h2 id="programs-title">Dein Weg.<br><em>Dein Tempo.</em></h2>
+            <p class="section-sub">Vom kostenlosen Einstieg bis zur intensiven Begleitung — du entscheidest, was zu dir passt.</p>
+        </div>
+        <div class="programs-grid">
+            <article class="card reveal">
+                <p class="card-tag">Einstieg</p>
+                <h3 class="card-name">Freebie</h3>
+                <p class="card-duration">Sofort starten</p>
+                <p class="card-price"><sup>€</sup>0</p>
+                <ul class="card-feats">
+                    <li>Ausgewählte Einstiegs-Inhalte</li>
+                    <li>Ernährungs-Grundlagen</li>
+                    <li>Community-Zugang</li>
+                </ul>
+                <a href="/healrise/app/" class="card-cta">Kostenlos starten</a>
+            </article>
+            <article class="card reveal d1">
+                <p class="card-tag">Kompakt</p>
+                <h3 class="card-name">HEALRISE 7</h3>
+                <p class="card-duration">7 Tage Begleitung</p>
+                <p class="card-price"><sup>€</sup>69</p>
+                <ul class="card-feats">
+                    <li>Alle Freebie-Inhalte</li>
+                    <li>7-Tage Wohlfühl-Programm</li>
+                    <li>Bewegungs- &amp; Selfcare-Videos</li>
+                    <li>E-Mail Support</li>
+                </ul>
+                <a href="/healrise/app/upgrade" class="card-cta">Jetzt starten</a>
+            </article>
+            <article class="card featured reveal d2">
+                <p class="card-badge">Beliebteste Wahl</p>
+                <p class="card-tag">Intensiv</p>
+                <h3 class="card-name">HEALRISE 14</h3>
+                <p class="card-duration">14 Tage Begleitung</p>
+                <p class="card-price"><sup>€</sup>169</p>
+                <ul class="card-feats">
+                    <li>Alle HEALRISE 7 Inhalte</li>
+                    <li>14-Tage Intensivprogramm</li>
+                    <li>Hautpflege &amp; Supplements Guide</li>
+                    <li>Mindset-Coaching-Module</li>
+                    <li>Prioritäts-Support</li>
+                </ul>
+                <a href="/healrise/app/upgrade" class="card-cta">Jetzt starten</a>
+            </article>
+            <article class="card reveal d3">
+                <p class="card-tag">Premium</p>
+                <h3 class="card-name">HEALRISE Premium</h3>
+                <p class="card-duration">6 Wochen Begleitung</p>
+                <p class="card-price"><sup>€</sup>399</p>
+                <ul class="card-feats">
+                    <li>Alle HEALRISE 14 Inhalte</li>
+                    <li>Persönlicher 1:1 Coaching-Call</li>
+                    <li>Individuelle Ernährungspläne</li>
+                    <li>Unbegrenzte Laufzeit</li>
+                    <li>Exklusive Community &amp; Live-Calls</li>
+                </ul>
+                <a href="/healrise/app/upgrade" class="card-cta">Jetzt starten</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- APP-PROMO -->
+<section class="app-promo paper-grain" aria-labelledby="app-title">
+    <svg class="app-spray" viewBox="0 0 160 130" aria-hidden="true"><use href="#hr-spray"/></svg>
+    <div class="container app-inner">
+        <div class="app-content">
+            <p class="eyebrow eyebrow-light reveal">Deine Begleitung — immer dabei</p>
+            <h2 id="app-title" class="reveal d1">Die HEALRISE App.<br><em>Direkt im Browser.</em></h2>
+            <p class="reveal d2">Kein Download-Umweg: Die HEALRISE Web-App startet sofort im Browser, lässt sich auf deinem Homescreen installieren und hält deine Inhalte auch offline bereit.</p>
+            <ul class="app-feats reveal d2">
+                <li>Dein Fortschritt, übersichtlich an einem Ort</li>
+                <li>Erinnerung an deine tägliche Routine — sanft, nicht aufdringlich</li>
+                <li>Auf dem Handy installierbar, offline nutzbar</li>
+            </ul>
+            <div class="reveal d3">
+                <a class="btn btn-ivory" href="/healrise/app/">App jetzt öffnen</a>
+            </div>
+        </div>
+        <div class="app-visual reveal d2" aria-hidden="true">
+            <div class="phone">
+                <div class="phone-screen">
+                    <svg class="phone-bloom" viewBox="0 0 120 120"><use href="#hr-bloom"/></svg>
+                    <p class="phone-greet">Guten Morgen</p>
+                    <div class="phone-card">
+                        <span class="phone-card-label">Dein heutiger Fokus</span>
+                        <span class="phone-card-title">Atem &amp; Entspannung</span>
+                    </div>
+                    <div class="phone-card phone-card-alt">
+                        <span class="phone-card-label">Dein Fortschritt</span>
+                        <span class="phone-card-title">Woche 2 von 6</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ÜBER UNS -->
+<section class="about" id="ueber-uns" aria-labelledby="about-title">
+    <div class="container about-inner">
+        <div class="about-visual reveal" aria-hidden="true">
+            <div class="about-frame">
+                <svg viewBox="0 0 120 120" class="about-bloom"><use href="#hr-bloom"/></svg>
+            </div>
+            <svg class="about-sprig" viewBox="0 0 100 120"><use href="#hr-sprig"/></svg>
+        </div>
+        <div class="about-content reveal d2">
+            <p class="eyebrow">Die Person hinter HEALRISE</p>
+            <h2 id="about-title">Von einer Frau,<br><em>die zuhört.</em></h2>
+            <p>HEALRISE wurde von Julia Berzal entwickelt — Gesundheitsmanagerin und Sportwissenschaftlerin. Aus ihrer Arbeit weiß sie, wie viel leichter Veränderungen fallen, wenn jemand zuhört, strukturiert und begleitet.</p>
+            <p>Daraus ist HEALRISE entstanden: ein Begleiter für alle, die gut für sich sorgen möchten — kompetent, empathisch und ohne erhobenen Zeigefinger.</p>
+            <ul class="credentials" aria-label="Hintergrund">
+                <li>Gesundheitsmanagerin</li>
+                <li>Sportwissenschaftlerin</li>
+                <li>Gründerin</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+    <div class="container faq-inner">
+        <div class="section-head reveal">
+            <p class="eyebrow">Häufige Fragen</p>
+            <h2 id="faq-title">Gut zu<br><em>wissen.</em></h2>
+        </div>
+        <div class="faq-list reveal d1">
+            <details>
+                <summary>Was ist HEALRISE?</summary>
+                <p>HEALRISE ist ein digitales Wellness-Programm rund um Ernährung, Bewegung, Selfcare und Mindset. Es begleitet dich mit alltagstauglichen Inhalten und Routinen — für dein Wohlbefinden und aktive Gewohnheiten.</p>
+            </details>
+            <details>
+                <summary>Ist HEALRISE ein Abo?</summary>
+                <p>Nein. Jedes Programm ist ein Einmalkauf ohne Laufzeit und ohne Kündigungsfrist. Das Freebie-Programm ist dauerhaft kostenlos.</p>
+            </details>
+            <details>
+                <summary>Wie nutze ich die Inhalte?</summary>
+                <p>Alle Inhalte findest du in der HEALRISE Web-App. Sie läuft direkt im Browser, lässt sich wie eine App auf dem Homescreen installieren und ist auch offline nutzbar.</p>
+            </details>
+            <details>
+                <summary>Kann ich später upgraden?</summary>
+                <p>Ja. Du kannst jederzeit in der App auf ein umfangreicheres Programm wechseln — dein Fortschritt bleibt erhalten.</p>
+            </details>
+            <details>
+                <summary>Ersetzt HEALRISE eine ärztliche Beratung?</summary>
+                <p>Nein. HEALRISE bietet allgemeine Wellness-Inhalte und ersetzt keine ärztliche Beratung, Diagnose oder Behandlung. Bei gesundheitlichen Fragen wende dich bitte an deine Ärztin oder deinen Arzt.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="newsletter" aria-labelledby="nl-title">
+    <div class="container">
+        <div class="nl-card paper-grain reveal">
+            <div class="nl-content">
+                <p class="eyebrow eyebrow-light">Wissen, das dich stärkt</p>
+                <h2 id="nl-title">Impulse für deine Routine —<br><em>direkt ins Postfach.</em></h2>
+                <p>Erhalte gelegentlich Tipps, neue Inhalte und Angebote. Kein Spam, Abmeldung jederzeit möglich.</p>
+            </div>
+            <form class="nl-form" id="nl-form">
+                <label class="visually-hidden" for="nl-name">Dein Vorname</label>
+                <input id="nl-name" name="name" type="text" placeholder="Dein Vorname" autocomplete="given-name">
+                <label class="visually-hidden" for="nl-email">Deine E-Mail-Adresse</label>
+                <input id="nl-email" name="email" type="email" placeholder="Deine E-Mail-Adresse" required autocomplete="email">
+                <button type="submit" class="btn btn-ivory">Anmelden</button>
+                <p class="nl-note">Die Anmeldung öffnet eine E-Mail an <a href="mailto:hello@healrise.de">hello@healrise.de</a> — wir tragen dich persönlich ein.</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" aria-label="Fußzeile">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="brand">
+                    <svg class="brand-mark" viewBox="0 0 120 120" width="40" height="40" aria-hidden="true"><use href="#hr-bloom"/></svg>
+                    <span class="brand-word">
+                        <span class="brand-name">HEALRISE</span>
+                        <span class="brand-tagline">Support · Renew · Rise</span>
+                    </span>
+                </div>
+                <p>Digitale Begleitung für Wohlbefinden, Routinen und aktive Gewohnheiten — ganzheitlich &amp; persönlich.</p>
+                <a href="mailto:hello@healrise.de">hello@healrise.de</a>
+            </div>
+            <nav class="footer-col" aria-label="Entdecken">
+                <h3>Entdecken</h3>
+                <ul>
+                    <li><a href="#programme">Programme</a></li>
+                    <li><a href="#so-funktionierts">So funktioniert's</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="/healrise/app/">HEALRISE App</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Über HEALRISE">
+                <h3>Über HEALRISE</h3>
+                <ul>
+                    <li><a href="#ueber-uns">Über uns</a></li>
+                    <li><a href="mailto:hello@healrise.de">Kontakt</a></li>
+                    <li><a href="mailto:hello@healrise.de?subject=Kooperationsanfrage">Für Fachkreise</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Rechtliches">
+                <h3>Rechtliches</h3>
+                <ul>
+                    <li><a href="/healrise/app/impressum">Impressum</a></li>
+                    <li><a href="/healrise/app/datenschutz">Datenschutz</a></li>
+                    <li><a href="/healrise/app/agb">AGB</a></li>
+                    <li><a href="/healrise/app/widerruf">Widerruf</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 HEALRISE. Julia Berzal. Alle Rechte vorbehalten.</p>
+            <p class="footer-disclaimer">HEALRISE ist ein Wellness-Angebot und ersetzt keine ärztliche Beratung, Diagnose oder Behandlung.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "name": "healrise",
+  "private": true,
+  "version": "1.0.0",
+  "description": "HEALRISE — PWA (app/), Strapi-5-Backend (strapi/) und Landing-Page (landing/ → dist/). Skripte orchestrieren alle Teilprojekte.",
+  "scripts": {
+    "lint": "npm --prefix app run lint",
+    "test": "npm --prefix app test",
+    "test:scripts": "node --test scripts/tests/*.test.mjs",
+    "test:strapi": "node --test strapi/tests/account-deletion.test.mjs strapi/tests/purchase-confirmation-flow.test.mjs strapi/tests/stripe-webhook.test.mjs strapi/tests/webhook-fulfillment.test.mjs",
+    "test:api": "node strapi/tests/api-tests.mjs",
+    "test:e2e": "npm --prefix app run test:e2e",
+    "test:e2e:offline": "npm --prefix app run test:e2e:offline",
+    "build": "npm --prefix app run build",
+    "build:landing": "node scripts/build-landing.mjs",
+    "check": "npm run lint && npm test && npm run test:scripts && npm run test:strapi && npm run build && npm run build:landing",
+    "check:all": "npm run check && npm run test:api && npm run test:e2e && npm run test:e2e:offline"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.61.1"
+  }
+}

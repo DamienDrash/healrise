@@ -1,0 +1,107 @@
+{
+    "head_sha": "ea3bdaf",
+    "current_section": "P3.1/P3.2/P3.5 lokal goldstandard-verifiziert; operator-blockiert fuer echte Zustellung/Stripe",
+    "next_action": "Keine unabhaengigen P3.1/P3.2/P3.5 Tickets offen. Wartet auf Damien: BL-3 Stripe Test-Keys+Webhook, BL-4 Postal/SMTP, BL-1 Betreiberdaten, BL-2 Git Remote. Danach kontrollierte Reset-Mail- und Stripe-Testkauf-Smokes.",
+    "status": "blocked_on_operator",
+    "session_2026_07_19": {
+        "browser_test": "66/66 funktionale Checks gruen (Desktop 1280x800 + Mobile iPhone 13); Bericht docs/browser-test-2026-07-19.md; Artefakte /tmp/htest/",
+        "hardening": "strapi::poweredBy entfernt (kein X-Powered-By-Leak); greift erst beim naechsten Strapi-Neustart (laeuft als 'strapi start', NODE_ENV=production, kein Watcher)",
+        "stripe_mocks": "sk_test_mock123 / whsec_mock123 in strapi/.env (gitignored) sind INAKTIVE Platzhalter: NODE_ENV=production ignoriert STRIPE_TEST_SECRET_KEY, und Mock-Werte wuerden bei echtem Stripe-Call mit 401 scheitern. Checkout bleibt sauber deaktiviert (503). Echte sk_test_-Keys folgen von Damien.",
+        "offen": "5 Test-User (ids 18-22, @test.healrise.de) in Prod-DB — DB-Delete vom Guard blockiert; Cleanup-SQL in docs/browser-test-2026-07-19.md"
+    },
+    "blockers": [
+        "BL-1: Rechtstexte & Betreiberdaten (Name/Anschrift/USt-IdNr.)",
+        "BL-2: Git-Remote (GitHub privat)",
+        "BL-3: Stripe Test-Keys + Webhook-Endpoint im Dashboard",
+        "BL-4: Postal Domain, SPF/DKIM, SMTP in .env"
+    ],
+    "last_po_cron_2026_07_19": {
+        "checked_at": "2026-07-19T21:01:52Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com; pane idle at prompt; no prompt sent because no independent P3.1/P3.2/P3.5 ticket remains",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass; git status clean before state refresh",
+        "roadmap": "P3.1 email, P3.2 Stripe, P3.5 purchase-confirmation mail all documented as locally prepared with external operator/runtime blockers only",
+        "blockers_record": "/opt/data/blockers_damien.md lists Stripe/Postal/Git/Recht blockers",
+        "remote_head_before_state_refresh": "b097087"
+    },
+    "session_2026_07_20": {
+        "checked_at": "2026-07-19T23:02:30Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com; process active; pane idle at prompt; no prompt sent because no independent P3.1/P3.2/P3.5 ticket remains",
+        "repo": "server-eins /opt/healrise on main; git status clean after state refresh; HEAD 4483951",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "P3.1 email provider/reset config, P3.2 Stripe testmode guards, P3.5 purchase-confirmation mail are locally prepared; remaining acceptance criteria require operator/provider setup",
+        "blockers_record": "/opt/data/blockers_damien.md lists Stripe/Postal/Git/Recht blockers"
+    },
+    "session_2026_07_20_cron_0001Z": {
+        "checked_at": "2026-07-20T00:01:41Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com; pane idle at prompt; no prompt sent because roadmap P3.1/P3.2/P3.5 has no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD 4483951; git status clean before state refresh",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "P3.1 email provider/reset config, P3.2 Stripe testmode guards, P3.5 purchase-confirmation mail locally prepared; external operator/provider setup remains",
+        "blockers_record": "/opt/data/blockers_damien.md contains BL-1/BL-2/BL-3/BL-4"
+    },
+    "last_po_cron_2026_07_20_0201Z": {
+        "checked_at": "2026-07-20T02:01:55Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; tmux pane idle at prompt after prior writer completion; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD 866d407 before this state refresh; git status clean",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "P3.1 email provider/reset config, P3.2 Stripe testmode guards, P3.5 purchase-confirmation mail remain locally prepared; acceptance needs Stripe/Postal/operator data",
+        "blockers_record": "/opt/data/blockers_damien.md contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    },
+    "last_po_cron_2026_07_20_0301Z": {
+        "checked_at": "2026-07-20T03:02:52Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; pane idle at prompt; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD e360dcc before this state refresh; git status clean before refresh",
+        "checks": "npm run check green: lint ok; app tests 219/219; script tests 392/392; strapi tests 31/31; app build ok; landing build ok",
+        "roadmap": "P3.1 email provider/reset config, P3.2 Stripe testmode guards, P3.5 purchase-confirmation mail locally prepared; external Stripe/Postal/operator setup still required for live acceptance",
+        "blockers_record": "/opt/data/blockers_damien.md contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    },
+    "last_po_cron_2026_07_20_0401Z": {
+        "checked_at": "2026-07-20T04:02:01Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; process active; pane idle at prompt after /exit text; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD f59bf57 before state refresh; git status clean",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "P3.1 email provider/reset config, P3.2 Stripe testmode guards, P3.5 purchase-confirmation mail locally prepared; external Stripe/Postal/operator-data blockers remain",
+        "blockers_record": "/opt/data/blockers_damien.md contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    },
+    "last_po_cron_2026_07_20_0501Z": {
+        "checked_at": "2026-07-20T05:01:42Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; process active; pane idle at prompt with stale /exit text; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD 9de5c58; git status clean before state refresh",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "P3.1 email provider/reset config, P3.2 Stripe testmode guards, P3.5 purchase-confirmation mail locally prepared; external Stripe/Postal/operator setup still required for live acceptance",
+        "blockers_record": "/opt/data/blockers_damien.md contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    },
+    "last_po_cron_2026_07_20_1201Z": {
+        "checked_at": "2026-07-20T12:01:55Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; process active; tmux pane idle at /exit prompt; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD 39bddfa; git status ## main before state refresh",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "docs/production-readiness-roadmap.md still marks P3.1/P3.2/P3.5 locally prepared and externally/operator blocked",
+        "blockers_record": "/opt/data/blockers_damien.md unchanged; contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    },
+    "last_po_cron": "last_po_cron_2026_07_20_1701Z",
+    "last_po_cron_2026_07_20_1300Z": {
+        "checked_at": "2026-07-20T13:00:47Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; process active; pane idle at remote-control prompt; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD aee9e7b; git status ## main before state refresh",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "docs/production-readiness-roadmap.md still marks P3.1/P3.2/P3.5 locally prepared and externally/operator blocked; no independent roadmap ticket discovered",
+        "blockers_record": "/opt/data/blockers_damien.md contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    },
+    "last_po_cron_2026_07_20_1400Z": {
+        "checked_at": "2026-07-20T14:00:53Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; process active; pane idle at remote-control prompt with stale /exit input; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD 6d616b7; git status ## main before state refresh",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "docs/production-readiness-roadmap.md still marks P3.1 email, P3.2 Stripe test-mode, P3.5 purchase-confirmation mail locally prepared and externally/operator blocked; no independent roadmap ticket discovered",
+        "blockers_record": "/opt/data/blockers_damien.md unchanged; contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    },
+    "last_po_cron_2026_07_20_1701Z": {
+        "checked_at": "2026-07-20T17:01:02Z",
+        "remote_session": "damien_healrise owned by dfrigewski@gmail.com per fleet audit; process active; tmux pane capture blank/idle; no prompt sent because P3.1/P3.2/P3.5 have no independent ticket left",
+        "repo": "server-eins /opt/healrise on main; HEAD ea3bdaf before state refresh; git status clean before refresh",
+        "checks": "npm run test:scripts: 392/392 pass; npm run test:strapi: 31/31 pass",
+        "roadmap": "docs/production-readiness-roadmap.md still marks P3.1/P3.2/P3.5 locally prepared and externally/operator blocked; no safe independent P3 ticket found",
+        "blockers_record": "/opt/data/blockers_damien.md unchanged; contains BL-1/BL-2/BL-3/BL-4; no new blocker added"
+    }
+}
